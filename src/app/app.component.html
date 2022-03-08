@@ -1,0 +1,60 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <h3>Prueba Nexos Josue Verbel</h3>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-4 ">
+        <h2 class="text-aling-right">Nuevo Libro  </h2>
+      </div>
+      <div class="col-md-8 ">
+        <h2 class="text-aling-right">Listado de libros  </h2>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4 shadow-sm">
+          <button class="btn btn-primary" (click)="add()" *ngIf="!showForm">Crear Nuevo</button>
+          <form [formGroup]="form" (ngSubmit)="saveBook()" *ngIf="showForm">
+            
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="text" class="form-control"formControlName="name" required>
+            </div>
+            <div class="form-group">
+              <label for="department">Descripcion</label>
+              <input type="text" class="form-control" formControlName="description" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary m-2">Guardar</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <table class="table">
+          <thead>
+            <tr>
+             
+              <th scope="col">Serial</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of books$ | async">
+              <th scope="row">{{book.id}}</th>
+              <td>{{book.name}}</td>
+              <td>{{book.description}}</td>
+              <td><button class="btn btn-danger  m-2" (click)="deleteBook(book)" >Eliminar</button>
+                <button class="btn btn-warning m-2" (click)="selUpdateBook(book)" >Actualizar</button>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+      </div>
+
+     
+    </div>
+  </div>
+</section>
